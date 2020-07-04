@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,6 +15,8 @@ namespace web1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
+            SqlConnection conn = new SqlConnection(connStr);
             CurrentUser.Text = (Session["CurrentUser"] != null) ? Session["CurrentUser"].ToString() : "未登录";
         }
         private void clean()
@@ -29,7 +32,7 @@ namespace web1
         protected void Button3_Click(object sender, EventArgs e)
         {
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             //int flagAddstu = 0;

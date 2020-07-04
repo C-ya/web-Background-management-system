@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,7 @@ namespace web1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
             CurrentUser.Text = (Session["CurrentUser"] != null) ? Session["CurrentUser"].ToString() : "未登录";
             TextBox1.Text = (Session["stuid"] != null) ? Session["stuid"].ToString() : "无信息";
             TextBox2.Text = (Session["couid"] != null) ? Session["couid"].ToString() : "无信息";
@@ -22,7 +24,7 @@ namespace web1
         protected void Button1_Click(object sender, EventArgs e)
         {
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             try

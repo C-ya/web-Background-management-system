@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Configuration;
 
 namespace web1
 {
@@ -18,11 +19,13 @@ namespace web1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
+            SqlConnection conn = null;
             //获取文本框中的值
             string username = this.textBox1.Text;
             string password = this.textBox2.Text;
@@ -33,10 +36,16 @@ namespace web1
             }
             else//用户名或密码不为空
             {
+                conn = new SqlConnection(connStr);
+                //打开数据库连接
+                conn.Open();
+                string sql = "select * from [User] where LoginName='" + username + "' and LoginPwd='" + password + "'";
+                
+                //创建SqlCommand对象
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                //执行SQL语句
+                int count = (int)cmd.ExecuteScalar();
                 //到数据库中验证
-                string selectSql = "select * from [User] where LoginName='" + username + "' and LoginPwd='" + password + "'";
-                sqlHelp sqlHelper = new sqlHelp();
-                int count = sqlHelper.SqlServerRecordCount(selectSql);//返回符合的结果数量
                 if (count > 0)//如果信息>0则说明匹配成功
                 {
                     MessageBox.Show("信息验证成功");

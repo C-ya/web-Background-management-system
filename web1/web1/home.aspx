@@ -117,7 +117,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <!--End Page Title-->
-                <asp:GridView ID="GridView2" runat="server" OnRowCommand="GridView_OnRowCommand" AllowPaging="True" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" DataKeyNames="学号" DataSourceID="SqlDataSource2" ForeColor="#333333" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" Width="98%">
+                <asp:GridView ID="GridView2" runat="server" OnPageIndexChanging="GridView2_PageIndexChanging" OnRowCommand="GridView_OnRowCommand" AllowPaging="True" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="4" DataKeyNames="学号" DataSourceID="SqlDataSource2" ForeColor="#333333" HorizontalAlign="Center" ShowHeaderWhenEmpty="True" Width="98%">
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="学号" HeaderText="学号" ReadOnly="True" SortExpression="学号" />

@@ -196,7 +196,6 @@
     <Compile Include="registration.aspx.designer.cs">
       <DependentUpon>registration.aspx</DependentUpon>
     </Compile>
-    <Compile Include="sqlHelp.cs" />
     <Compile Include="stugrade.aspx.cs">
       <DependentUpon>stugrade.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

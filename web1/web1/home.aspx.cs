@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,18 +15,20 @@ namespace web1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            QueryAllStu();
             CurrentUser.Text = (Session["CurrentUser"] != null) ? Session["CurrentUser"].ToString() : "未登录";
         }
 
-        protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
+        protected void GridView2_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            GridView2.PageIndex = e.NewPageIndex;
+            GridView2.DataBind();
         }
         //查询全部学生
         private void QueryAllStu()
         {
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             try
@@ -67,7 +70,7 @@ namespace web1
             //获取DataGridView控件中选中行的编号列的值
             string id = this.GridView2.Rows[index].Cells[0].Text.ToString();
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             if (e.CommandName == "edit")
@@ -142,7 +145,7 @@ namespace web1
             if (TextBox1.Text != "")
             {
                 //数据库连接串
-                string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+                string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
                 //创建SqlConnection的实例
                 SqlConnection conn = null;
                 try

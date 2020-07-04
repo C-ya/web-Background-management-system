@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace web1
         private void QueryAllTeach()
         {
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             try
@@ -64,7 +65,7 @@ namespace web1
             string teaid = this.GridView2.Rows[index].Cells[0].Text.ToString();
             string couid = this.GridView2.Rows[index].Cells[1].Text.ToString();
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             if (e.CommandName == "Del")
@@ -104,7 +105,7 @@ namespace web1
             if (TextBox1.Text != "")
             {
                 //数据库连接串
-                string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+                string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
                 //创建SqlConnection的实例
                 SqlConnection conn = null;
                 try

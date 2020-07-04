@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -21,7 +22,7 @@ namespace web1
         {
 
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建 SqlConnection的实例
             SqlConnection conn = null;
             int CanRegister = 0;

@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace web1
         private void QueryAllTea()
         {
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             try
@@ -59,7 +60,7 @@ namespace web1
             //获取DataGridView控件中选中行的编号列的值
             string id = this.GridView1.Rows[index].Cells[0].Text.ToString();
             //数据库连接串
-            string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+            string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
             //创建SqlConnection的实例
             SqlConnection conn = null;
             if (e.CommandName == "Edit")
@@ -137,7 +138,7 @@ namespace web1
             if (TextBox1.Text != "")
             {
                 //数据库连接串
-                string connStr = "Data Source=.;Initial Catalog=jxgl;User ID=sa;Password=123456";
+                string connStr = ConfigurationManager.ConnectionStrings["jxglConnectionString"].ConnectionString;
                 //创建SqlConnection的实例
                 SqlConnection conn = null;
                 try
